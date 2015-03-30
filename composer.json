@@ -1,12 +1,25 @@
 {
   "name": "blackfyresutio/crud",
-  "description": "description_text",
-  "minimum-stability": "stable",
+  "description": "A Laravel 5 CRUD package based on krafthaus/bauhaus, although greatly modified...",
+  "keywords": ["laravel","crud","bauhaus alternative","admin generator"],
+  "minimum-stability": "dev",
   "license": "MIT",
   "authors": [
     {
       "name": "Galicz Miklós",
       "email": "gnick666@gmail.com"
     }
-  ]
+  ],
+  "require": {
+    "intervention/image": "~2.1",
+    "intervention/imagecache": "~2.1"
+  },
+  "autoload": {
+    "classmap": [
+      "src/commands"
+    ],
+    "psr-4": {
+      "BlackfyreSudio\\CRUD\\": "src/crud/"
+    }
+  },
 }
