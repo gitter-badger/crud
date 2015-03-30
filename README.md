@@ -1,1 +1,3 @@
 # crud
+
+A Laravel 5 CRUD package based on krafthaus/bauhaus, although greatly modified...
