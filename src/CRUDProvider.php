@@ -32,7 +32,7 @@ class CRUDProvider extends ServiceProvider {
 
         $configPath = __DIR__ . '/../config/crud-config.php';
         $this->mergeConfigFrom($configPath,'crud-config');
-        $this->publishes([$configPath=>config_path('crud-config')],'config');
+        $this->publishes([$configPath=>config_path('crud-config.php')],'config');
 
         include 'routes.php';
     }
