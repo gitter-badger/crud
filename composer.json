@@ -16,11 +16,8 @@
     "graham-campbell/markdown": "~3.0@dev"
   },
   "autoload": {
-    "classmap": [
-      "src/commands"
-    ],
     "psr-4": {
-      "BlackfyreSudio\\CRUD\\": "src/crud/"
+      "BlackfyreStudio\\CRUD\\": "src/"
     }
   }
 }
