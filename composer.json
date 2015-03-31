@@ -1,5 +1,5 @@
 {
-  "name": "blackfyresutio/crud",
+  "name": "blackfyrestudio/crud",
   "description": "A Laravel 5 CRUD package based on krafthaus/bauhaus, although greatly modified...",
   "keywords": ["laravel","crud","bauhaus alternative","admin generator"],
   "minimum-stability": "dev",
