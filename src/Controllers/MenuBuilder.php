@@ -21,12 +21,13 @@ namespace BlackfyreStudio\CRUD;
  * Class MenuBuilder
  * @package BlackfyreStudio\CRUD
  */
-class MenuBuilder {
+class MenuBuilder
+{
     /**
      * Holds the menu items.
      * @var array
      */
-    protected $items = ['left' => [], 'top' => []];
+    protected $items = [];
 
     /**
      * Public class constructor.
@@ -35,11 +36,10 @@ class MenuBuilder {
      */
     public function __construct()
     {
-        $config = \Config::get('crud-menu');
-        if ($config !== null) {
-            $this->items['left'] = \Config::get('crud-menu');
-        }
+        $this->items = \Config::get('crud-menu');
+        dd($this->items);
     }
+
     /**
      * Get the menu items.
      *
@@ -55,15 +55,15 @@ class MenuBuilder {
      * Add new items to the menu array.
      *
      * @param  array $menu
-     *
-     * @access public
      * @return MenuBuilder
+     * @access public
      */
-    public function addMenu($position, array $menu)
+    public function addMenu(array $menu)
     {
-        array_push($this->items[$position], $menu);
+        $this->items[] = $menu;
         return $this;
     }
+
     /**
      * Build the menu html.
      *
@@ -72,19 +72,14 @@ class MenuBuilder {
      */
     public function build()
     {
-        $menu = $this->items;
         $html = '';
-        if (isset($menu['right'])) {
-            $html.= '<ul class="nav navbar-nav navbar-right">';
-            $html.= $this->buildMenu($menu['right']);
-            $html.= '</ul>';
-        }
-        $html.= '<ul class="nav navbar-nav">';
-        $html.= sprintf('<li><a href="%s">Dashboard</a></li>', route('admin.dashboard'));
-        $html.= $this->buildMenu($menu['left']);
-        $html.= '</ul>';
+        $html .= '<ul class="nav" id="side-menu">';
+        $html .= sprintf('<li><a href="%s"><i class="fa fa-dashboard fa-fw"></i>  %s</a></li>', route('admin.dashboard'), trans('crud::views.dashboard.title'));
+        $html .= $this->buildMenu($this->items);
+        $html .= '</ul>';
         return $html;
     }
+
     /**
      * Iterator method for the build() function.
      *
@@ -132,18 +127,22 @@ class MenuBuilder {
 
             $icon = '';
             if (isset($value['icon'])) {
-                $icon = sprintf('<i class="fa fa-%s"></i> ', $value['icon']);
+                $icon = sprintf('<i class="fa fa-%s"></i>&nbsp;', $value['icon']);
             }
+
             if (isset($value['children'])) {
-                $html.= '<li class="dropdown">';
-                $html.= sprintf('<a href="#" class="dropdown-toggle" data-toggle="dropdown">%s%s<b class="caret"></b></a>', $icon, $value['title']);
-                $html.= '<ul class="dropdown-menu">';
-                $html.= $this->buildMenu($value['children']);
-                $html.= '</ul>';
-                $html.= '</li>';
+                $html .= '<li>';
+                $html .= sprintf('<a href="#">%s%s<span class="fa arrow"></span></a>', $icon, $value['title']);
+                $html .= '<ul class="nav">';
+                $html .= $this->buildMenu($value['children']);
+                $html .= '</ul>';
+                $html .= '</li>';
                 continue;
             }
+
+
             $url = '';
+
             if (isset($value['class'])) {
                 $url = route('admin.model.index', urlencode($value['class']));
             } elseif (isset($value['url'])) {
@@ -151,13 +150,17 @@ class MenuBuilder {
             } elseif (isset($value['route'])) {
                 $url = route($value['route']);
             }
-            if (isset($value['text'])) {
-                $html.= sprintf('<li><p class="navbar-text">%s</p></li>', $value['text']);
-            } elseif (isset($value['image'])) {
-                $html.= sprintf('<li><img src="%s" class="navbar-image"></li>', $value['image']);
-            } elseif (isset($value['title'])) {
-                $html.= sprintf('<li><a href="%s">%s%s</a></li>', $url, $icon, $value['title']);
+
+            $custom = '';
+
+            if (isset($value['custom']) && is_array($value['custom'])) {
+                foreach ($value['custom'] AS $k=>$v) {
+                    $custom[] = $k . '="' . $v . '"';
+                }
+                $custom = implode(' ', $custom);
             }
+
+            $html .= sprintf('<li><a href="%s" %s>%s%s</a></li>', $url, $custom, $icon, $value['title']);
         }
         return $html;
     }

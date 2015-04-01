@@ -23,18 +23,34 @@ class CRUDProvider extends ServiceProvider {
     }
 
     public function boot() {
+
+        /*
+         * Setting up view for publishing
+         */
         $viewPath = __DIR__.'/../views';
         $this->publishes([$viewPath => base_path('resources/views/vendor/crud')], 'views');
         $this->loadViewsFrom($viewPath, 'crud');
 
+        /*
+         * Setting up asset publishing (css, javascript, fonts, images, ...)
+         */
         $publicPath = __DIR__.'/../public';
         $this->publishes([$publicPath => public_path('vendor/blackfyrestudio/crud')], 'public');
 
+        /*
+         * Setting up config files for publishing
+         */
         $configPath = __DIR__ . '/../config/';
         $this->mergeConfigFrom($configPath . 'crud-config.php','crud-config');
         $this->publishes([$configPath=>config_path('crud-config.php')],'config');
         $this->mergeConfigFrom($configPath . 'crud-menu.php','crud-menu');
         $this->publishes([$configPath=>config_path('crud-menu.php')],'config');
+
+        /*
+         * Setting up translations
+         */
+
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'crud');
 
         include 'routes.php';
     }

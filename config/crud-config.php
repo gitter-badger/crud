@@ -34,4 +34,12 @@ return [
         'time'     => 'H:i:s',
         'datetime' => 'Y-m-d H:i:s'
     ],
+
+    /**
+     * Additional, custom assets. They will be loaded after the main files, with the asset() helper, so the same rules apply.
+     */
+    'assets' => [
+        'stylesheets' => [],
+        'javascript' => []
+    ]
 ];

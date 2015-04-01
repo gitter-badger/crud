@@ -21775,11 +21775,25 @@ Licensed under the BSD-2-Clause License.
 
     'use strict';
 
-    $(function() {
 
-        $('#side-menu').metisMenu();
 
-    });
+
+
+})(jQuery, window, document);
+
+/**
+ * Created by mgalicz on 4/1/2015.
+ */
+
+
+;(function ($, window, document, undefined) {
+
+    'use strict';
+
+    $('#side-menu > li > ul').addClass('nav-second-level');
+    $('#side-menu > li > ul > li > ul').addClass('nav-third-level');
+
+    $('#side-menu').metisMenu();
 
     $(window).bind("load resize", function() {
         var topOffset = 50;
@@ -21801,8 +21815,8 @@ Licensed under the BSD-2-Clause License.
 
     var url = window.location;
 
-    /* TODO: filter out results with # */
-    var element = $('ul.nav a').filter(function() {
+
+    var element = $('ul.nav').find('a').filter(function() {
         return this.href == url || url.href.indexOf(this.href) === 0;
     }).addClass('active').parent().parent().addClass('in').parent();
     if (element.is('li')) {
@@ -21811,6 +21825,10 @@ Licensed under the BSD-2-Clause License.
 
 
 })(jQuery, window, document);
+/**
+ * Created by mgalicz on 4/1/2015.
+ */
+
 
 ;(function ($, window, document, undefined) {
 

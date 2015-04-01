@@ -13,8 +13,13 @@ Route::group([
 
     Route::get('/',[
         'as'=>'crud.home',
+        'uses'=>'BlackfyreStudio\CRUD\DashboardController@index'
+    ]);
+
+    Route::post('slugger',[
+        'as'=>'crud.slugger',
         function() {
-            return view('crud::master');
+            return Response::json(['response'=>\Illuminate\Support\Str::slug(Input::get('toSlug'))]);
         }
     ]);
 
