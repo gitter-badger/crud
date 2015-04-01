@@ -30,9 +30,11 @@ class CRUDProvider extends ServiceProvider {
         $publicPath = __DIR__.'/../public';
         $this->publishes([$publicPath => public_path('vendor/blackfyrestudio/crud')], 'public');
 
-        $configPath = __DIR__ . '/../config/crud-config.php';
-        $this->mergeConfigFrom($configPath,'crud-config');
+        $configPath = __DIR__ . '/../config/';
+        $this->mergeConfigFrom($configPath . 'crud-config.php','crud-config');
         $this->publishes([$configPath=>config_path('crud-config.php')],'config');
+        $this->mergeConfigFrom($configPath . 'crud-menu.php','crud-menu');
+        $this->publishes([$configPath=>config_path('crud-menu.php')],'config');
 
         include 'routes.php';
     }
@@ -48,7 +50,7 @@ class CRUDProvider extends ServiceProvider {
          * Adding aliases so the user won't have to
          */
         $loader = AliasLoader::getInstance();
-        $loader->alias('Image','Intervention\Image\Facades\Image');
+        $loader->alias('InterventionImage','Intervention\Image\Facades\Image');
         $loader->alias('Markdown','GrahamCampbell\Markdown\Facades\Markdown');
     }
 }
