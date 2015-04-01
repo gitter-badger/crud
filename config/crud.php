@@ -41,5 +41,6 @@ return [
     'assets' => [
         'stylesheets' => [],
         'javascript' => []
-    ]
+    ],
+    'menu'=>[]
 ];

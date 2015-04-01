@@ -36,8 +36,7 @@ class MenuBuilder
      */
     public function __construct()
     {
-        $this->items = \Config::get('crud-menu');
-        dd($this->items);
+        $this->items = \Config::get('crud.menu');
     }
 
     /**
@@ -70,12 +69,15 @@ class MenuBuilder
      * @access public
      * @return string
      */
-    public function build()
+    public static function build()
     {
+
+        $object = new self;
+
         $html = '';
         $html .= '<ul class="nav" id="side-menu">';
-        $html .= sprintf('<li><a href="%s"><i class="fa fa-dashboard fa-fw"></i>  %s</a></li>', route('admin.dashboard'), trans('crud::views.dashboard.title'));
-        $html .= $this->buildMenu($this->items);
+        $html .= sprintf('<li><a href="%s"><i class="fa fa-dashboard fa-fw"></i>  %s</a></li>', route('crud.home'), trans('crud::views.dashboard.title'));
+        $html .= $object->buildMenu($object->items);
         $html .= '</ul>';
         return $html;
     }
@@ -98,6 +100,7 @@ class MenuBuilder
         $user = \Sentry::getUser();
         */
         foreach ($menu as $value) {
+
             /*
                 Check if the current item should be filtered by permissions
                 If there's a permission requirement we check it, if fails we skip this iteration

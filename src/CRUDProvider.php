@@ -10,6 +10,7 @@ namespace BlackfyreStudio\CRUD;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\Str;
 
 class CRUDProvider extends ServiceProvider {
     /**
@@ -41,10 +42,8 @@ class CRUDProvider extends ServiceProvider {
          * Setting up config files for publishing
          */
         $configPath = __DIR__ . '/../config/';
-        $this->mergeConfigFrom($configPath . 'crud-config.php','crud-config');
-        $this->publishes([$configPath=>config_path('crud-config.php')],'config');
-        $this->mergeConfigFrom($configPath . 'crud-menu.php','crud-menu');
-        $this->publishes([$configPath=>config_path('crud-menu.php')],'config');
+        $this->publishes([$configPath=>config_path('crud.php')],'config');
+        $this->mergeConfigFrom($configPath . 'crud.php','crud');
 
         /*
          * Setting up translations
@@ -52,7 +51,23 @@ class CRUDProvider extends ServiceProvider {
 
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'crud');
 
-        include 'routes.php';
+        \Route::group([
+            'prefix' => \Config::get('crud.uri')
+        ], function() {
+
+            \Route::get('/',[
+                'as'=>'crud.home',
+                'uses'=>'BlackfyreStudio\CRUD\DashboardController@index'
+            ]);
+
+            \Route::post('slugger',[
+                'as'=>'crud.slugger',
+                function() {
+                    return \Response::json(['response'=>Str::slug(\Input::get('toSlug'))]);
+                }
+            ]);
+
+        });
     }
 
     private function setupDependencies() {

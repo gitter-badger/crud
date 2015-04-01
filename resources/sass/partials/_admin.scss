@@ -35,6 +35,10 @@ body {
 
 .navbar-top-links li {
   display: inline-block;
+
+  &.profile a {
+    padding: 5px;
+  }
 }
 
 .navbar-top-links li:last-child {
@@ -197,18 +201,18 @@ body {
   margin-bottom: 10px;
   padding-bottom: 5px;
   border-bottom: 1px dotted $gray-light;
-}
 
-.chat li.left .chat-body {
-  margin-left: 60px;
-}
+  .chat-body p {
+    margin: 0;
+  }
 
-.chat li.right .chat-body {
-  margin-right: 60px;
-}
+  &.left .chat-body {
+    margin-left: 60px;
+  }
 
-.chat li .chat-body p {
-  margin: 0;
+  &.right .chat-body {
+    margin-right: 60px;
+  }
 }
 
 .panel .slidedown .glyphicon,
@@ -249,23 +253,25 @@ table.dataTable thead .sorting_desc_disabled {
   background: transparent;
 }
 
-table.dataTable thead .sorting_asc:after {
-  content: "\f0de";
-  float: right;
-  font-family: fontawesome;
-}
+table.dataTable thead {
+  .sorting_asc:after {
+    content: "\f0de";
+    float: right;
+    font-family: fontawesome;
+  }
 
-table.dataTable thead .sorting_desc:after {
-  content: "\f0dd";
-  float: right;
-  font-family: fontawesome;
-}
+  .sorting_desc:after {
+    content: "\f0dd";
+    float: right;
+    font-family: fontawesome;
+  }
 
-table.dataTable thead .sorting:after {
-  content: "\f0dc";
-  float: right;
-  font-family: fontawesome;
-  color: rgba(50,50,50,.5);
+  .sorting:after {
+    content: "\f0dc";
+    float: right;
+    font-family: fontawesome;
+    color: rgba(50,50,50,.5);
+  }
 }
 
 // Circle Buttons
@@ -278,24 +284,24 @@ table.dataTable thead .sorting:after {
   text-align: center;
   font-size: 12px;
   line-height: 1.428571429;
-}
 
-.btn-circle.btn-lg {
-  width: 50px;
-  height: 50px;
-  padding: 10px 16px;
-  border-radius: 25px;
-  font-size: 18px;
-  line-height: 1.33;
-}
+  &.btn-lg {
+    width: 50px;
+    height: 50px;
+    padding: 10px 16px;
+    border-radius: 25px;
+    font-size: 18px;
+    line-height: 1.33;
+  }
 
-.btn-circle.btn-xl {
-  width: 70px;
-  height: 70px;
-  padding: 10px 16px;
-  border-radius: 35px;
-  font-size: 24px;
-  line-height: 1.33;
+  &.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+  }
 }
 
 // Grid Demo Elements
