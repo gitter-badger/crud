@@ -22,6 +22,18 @@ class CRUDProvider extends ServiceProvider {
     public function register()
     {
         $this->setupDependencies();
+
+        /*
+         * Setting up Console commands
+         */
+
+        $this->app['command.crud.scaffold'] = $this->app->share(
+            function () {
+                return new ScaffoldCommand();
+            }
+        );
+
+        $this->commands(['command.crud.scaffold']);
     }
 
     public function boot() {
@@ -52,15 +64,7 @@ class CRUDProvider extends ServiceProvider {
 
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'crud');
 
-        /*
-         * Setting up Console commands
-         */
 
-        $this->app['command.crud.scaffold'] = $this->app->share(
-            function ($app) {
-                return new ScaffoldCommand();
-            }
-        );
 
         \Route::group([
             'prefix' => \Config::get('crud.uri')
@@ -85,6 +89,16 @@ class CRUDProvider extends ServiceProvider {
             ]);
 
         });
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return array('command.crud.scaffold');
     }
 
     private function setupDependencies() {

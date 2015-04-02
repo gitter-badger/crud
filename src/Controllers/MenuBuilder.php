@@ -6,7 +6,7 @@
  * Time: 7:20
  */
 
-namespace BlackfyreStudio\CRUD;
+namespace BlackfyreStudio\CRUD\Builder;
 
     /**
      * This file was largely part of the KraftHaus Bauhaus package.

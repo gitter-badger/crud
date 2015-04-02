@@ -12,8 +12,7 @@ namespace BlackfyreStudio\CRUD;
 use Illuminate\Routing\Controller;
 
 class DashboardController extends Controller {
-    function index() {
-
+    public function index() {
         return view('crud::layouts.dashboard');
     }
 }
