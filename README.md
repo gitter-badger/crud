@@ -1,3 +1,25 @@
-# crud
+# CRUD
 
-A Laravel 5 CRUD package based on krafthaus/bauhaus, although greatly modified...
+This package while is based on the Krafthaus/Bauhaus package, greatly differs on some key points. First of all It will include an Auth & Role based permission management solution, and some more ideas as project comes along :smile:
+
+![alt text](https://travis-ci.org/BlackfyreStudio/crud.svg "Travis CI status")
+
+Contributions are welcome! Either as ideas or (preferably) pull requests :smile:
+
+## Tasklist
+
+* Working Scaffold command
+* Index view
+  * Bulk delete
+  * Bulk actions
+  * Boolean field actions per row
+* Create view
+* Edit view
+* Field types
+  * Text
+  * Email
+  * File
+  * Image
+  * Select
+  * Belongs to
+  * Numbers
