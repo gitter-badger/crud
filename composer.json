@@ -12,8 +12,7 @@
   ],
   "require": {
     "php": ">=5.4.0",
-    "illuminate/console": "~5.0",
-    "illuminate/support": "~5.0",
+    "laravel/framework": "5.0.*",
     "intervention/image": "~2.1",
     "intervention/imagecache": "~2.1",
     "graham-campbell/markdown": "~3.0@dev"
