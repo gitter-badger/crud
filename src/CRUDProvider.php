@@ -8,6 +8,7 @@
 
 namespace BlackfyreStudio\CRUD;
 
+use BlackfyreStudio\CRUD\Console\ScaffoldCommand;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Str;
@@ -51,6 +52,16 @@ class CRUDProvider extends ServiceProvider {
 
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'crud');
 
+        /*
+         * Setting up Console commands
+         */
+
+        $this->app['command.crud.scaffold'] = $this->app->share(
+            function ($app) {
+                return new ScaffoldCommand();
+            }
+        );
+
         \Route::group([
             'prefix' => \Config::get('crud.uri')
         ], function() {
@@ -59,6 +70,12 @@ class CRUDProvider extends ServiceProvider {
                 'as'=>'crud.home',
                 'uses'=>'BlackfyreStudio\CRUD\DashboardController@index'
             ]);
+
+            /*
+            \Route::get('index/{model}',[
+                'as'=>'crud.index'
+            ]);
+            */
 
             \Route::post('slugger',[
                 'as'=>'crud.slugger',
