@@ -8,6 +8,7 @@ Contributions are welcome! Either as ideas or (preferably) pull requests :smile:
 
 ## Tasklist
 
+* Laravel 5.1 LTS support
 * Working Scaffold command
 * Index view
   * Bulk delete
