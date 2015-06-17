@@ -95,6 +95,10 @@ class CRUDProvider extends ServiceProvider {
         $this->app->register(ImageServiceProvider::class);
         $this->app->register(MarkdownServiceProvider::class);
 
+        if ($this->app->environment() == 'local') {
+            $this->app->register(\Laracasts\Generators\GeneratorsServiceProvider::class);
+        }
+
         /*
          * Adding aliases so the user won't have to
          */
