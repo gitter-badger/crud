@@ -76,6 +76,19 @@ class MenuBuilder
 
         $html = '';
         $html .= '<ul class="nav" id="side-menu">';
+        $html .= '
+        <li class="sidebar-search">
+            <div class="input-group custom-search-form">
+                <input type="text" class="form-control" placeholder="Search...">
+                <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+            </div>
+            <!-- /input-group -->
+        </li>
+        ';
         $html .= sprintf('<li><a href="%s"><i class="fa fa-dashboard fa-fw"></i>  %s</a></li>', route('crud.home'), trans('crud::views.dashboard.title'));
         $html .= $object->buildMenu($object->items);
         $html .= '</ul>';

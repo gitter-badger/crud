@@ -17,10 +17,10 @@ return [
      * The package main title.
      * @var string
      */
-    'title'=>'CRUD',
+    'title'=>'BlackfyreStudio/CRUD',
 
     /**
-     * The directory where the bauhaus models are located.
+     * The directory where the crud models are located.
      * @var string
      */
     'directory'=>'crud',

@@ -8,7 +8,6 @@
 
 namespace BlackfyreStudio\CRUD;
 
-use BlackfyreStudio\CRUD\Console\ScaffoldCommand;
 use GrahamCampbell\Markdown\Facades\Markdown;
 use GrahamCampbell\Markdown\MarkdownServiceProvider;
 use Illuminate\Support\ServiceProvider;
@@ -26,18 +25,22 @@ class CRUDProvider extends ServiceProvider {
     public function register()
     {
         $this->setupDependencies();
+        $this->registerCommands();
+    }
 
-        /*
-         * Setting up Console commands
-         */
+    private function registerCommands() {
+        $this->app->singleton('command.crud.scaffold', function($app) {
+            return $app[Console\ScaffoldCommand::class];
+        });
 
-        $this->app['command.crud.scaffold'] = $this->app->share(
-            function () {
-                return new ScaffoldCommand();
-            }
-        );
+        $this->app->singleton('command.crud.model', function($app) {
+            return $app[Console\ModelCommand::class];
+        });
 
-        $this->commands(['command.crud.scaffold']);
+        $this->commands([
+            'command.crud.scaffold',
+            'command.crud.model'
+        ]);
     }
 
     public function boot() {
@@ -67,31 +70,9 @@ class CRUDProvider extends ServiceProvider {
          */
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'crud');
 
-
-
-        \Route::group([
-            'prefix' => \Config::get('crud.uri')
-        ], function() {
-
-            \Route::get('/',[
-                'as'=>'crud.home',
-                'uses'=>'BlackfyreStudio\CRUD\DashboardController@index'
-            ]);
-
-            /*
-            \Route::get('index/{model}',[
-                'as'=>'crud.index'
-            ]);
-            */
-
-            \Route::post('slugger',[
-                'as'=>'crud.slugger',
-                function() {
-                    return \Response::json(['response'=>Str::slug(\Input::get('toSlug'))]);
-                }
-            ]);
-
-        });
+        if (! $this->app->routesAreCached()) {
+            require __DIR__.'/routes.php';
+        }
     }
 
     /**
@@ -101,7 +82,10 @@ class CRUDProvider extends ServiceProvider {
      */
     public function provides()
     {
-        return array('command.crud.scaffold');
+        return array([
+            'command.crud.scaffold',
+            'command.crud.model'
+        ]);
     }
 
     private function setupDependencies() {

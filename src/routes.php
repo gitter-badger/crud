@@ -7,20 +7,22 @@
  */
 
 
-Route::group([
-    'prefix' => Config::get('crud-config.uri')
+\Route::group([
+    'prefix' => \Config::get('crud.uri')
 ], function() {
-
-    Route::get('/',[
+    \Route::get('/',[
         'as'=>'crud.home',
         'uses'=>'BlackfyreStudio\CRUD\DashboardController@index'
     ]);
-
-    Route::post('slugger',[
+    /*
+    \Route::get('index/{model}',[
+        'as'=>'crud.index'
+    ]);
+    */
+    \Route::post('slugger',[
         'as'=>'crud.slugger',
         function() {
-            return Response::json(['response'=>\Illuminate\Support\Str::slug(Input::get('toSlug'))]);
+            return \Response::json(['response'=>\Illuminate\Support\Str::slug(\Input::get('toSlug'))]);
         }
     ]);
-
 });

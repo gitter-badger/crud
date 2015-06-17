@@ -9,6 +9,7 @@
 namespace BlackfyreStudio\CRUD\Console;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 
@@ -30,7 +31,6 @@ class ScaffoldCommand extends Command {
     /**
      * Create a new command instance.
      *
-     * @return void
      */
     public function __construct() {
         parent::__construct();
@@ -43,7 +43,22 @@ class ScaffoldCommand extends Command {
      */
     public function fire()
     {
-        //
+        $name = $this->argument('name');
+        $modelName = Str::studly($this->argument('name'));
+        $tableName = 'crud_' . Str::lower($name);
+
+
+        $this->call('make:migration',[
+            'name'=>'create_' . Str::plural($tableName) . '_table',
+            '--create'=>$tableName,
+            '--table'=>$tableName
+        ]);
+
+        $this->call('crud:model',[
+            'name'=>$modelName,
+            '--table'=>$tableName
+        ]);
+
 
     }
 

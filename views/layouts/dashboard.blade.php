@@ -11,5 +11,10 @@
 @stop
 
 @section('content')
-
+    <div class="jumbotron">
+        <div class="container-fluid">
+            <h1>Welcome to the BlackfyreStudio/CRUD admin generator!</h1>
+            <p>To change this, edit the published template file under <code>resources/views/vendor/crud/layouts/dashboard.blade.php</code></p>
+        </div>
+    </div>
 @stop

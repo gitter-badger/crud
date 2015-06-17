@@ -45,16 +45,28 @@
         <!-- /.navbar-header -->
 
         <ul class="nav navbar-top-links navbar-right">
-            <li class="profile"><a href="#"><img class="img-rounded" src="http://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=40" /></a></li>
-            <li><a href="#"><i class="fa fa-exclamation-triangle"></i>&nbsp;Logout</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
         </ul>
         <!-- /.navbar-top-links -->
 
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
-
                 {!! BlackfyreStudio\CRUD\Builder\MenuBuilder::build() !!}
-
             </div>
             <!-- /.sidebar-collapse -->
         </div>
@@ -65,7 +77,7 @@
         @yield('subheader')
         <div class="row">
             <div class="col-xs-12">
-        @include('crud::partials._session-messages')
+                @include('crud::partials._session-messages')
             </div>
         </div>
         @yield('content')
