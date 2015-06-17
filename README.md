@@ -31,11 +31,11 @@ To install the bleeding edge package just follow these steps
 ```
 $ composer require blackfyrestudio/crud:dev-master
 ```
-add the package to the providers list in `config/app.php`
+Add the package to the providers list in `config/app.php`
 ```
 BlackfyreStudio\CRUD\CRUDProvider::class
 ```
-publish the package files
+To publish the package files
 ```
-$ php artisan vendor:publish --provider=blackfyrestudio/crud
+$ php artisan vendor:publish --provider="BlackfyreStudio\CRUD\CRUDProvider"
 ```

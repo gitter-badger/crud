@@ -65,7 +65,6 @@ class CRUDProvider extends ServiceProvider {
         /*
          * Setting up translations
          */
-
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'crud');
 
 
