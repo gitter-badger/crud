@@ -16,7 +16,6 @@
     "tests"
   ],
   "dependencies": {
-    "startbootstrap-sb-admin-2": "~1.0.5",
-    "bootstrap-sass-official": "~3.3.4"
+    "startbootstrap-sb-admin-2-sass": "https://github.com/BlackfyreStudio/startbootstrap-sb-admin-2-sass.git#~1.0.0"
   }
 }
