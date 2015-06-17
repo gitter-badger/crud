@@ -12,7 +12,7 @@
     <title>{{Config::get('crud.title')}}</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{asset('vendor/blackfyrestudio/crud/styles/style.css')}}" rel="stylesheet">
+    <link href="{{asset('vendor/blackfyrestudio/crud/styles/sb-admin-2.min.css')}}" rel="stylesheet">
 
     @foreach (Config::get('crud.assets.stylesheets') as $stylesheet)
         <link rel="stylesheet" href="{{ asset($stylesheet) }}">
@@ -75,7 +75,7 @@
 </div>
 <!-- /#wrapper -->
 
-<script src="{{asset('vendor/blackfyrestudio/crud/scripts/main.js')}}"></script>
+<script src="{{asset('vendor/blackfyrestudio/crud/scripts/admin.min.js')}}"></script>
 
 @foreach (Config::get('crud.assets.javascript') as $javascript)
     <script src="{{ asset($javascript) }}"></script>
