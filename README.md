@@ -1,5 +1,7 @@
 # CRUD
 
+[![Join the chat at https://gitter.im/BlackfyreStudio/crud](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/BlackfyreStudio/crud?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This package while is based on the Krafthaus/Bauhaus package, greatly differs on some key points. First of all It will include an Auth & Role based permission management solution, and some more ideas as project comes along :smile:
 
 [![Travis](https://img.shields.io/travis/BlackfyreStudio/crud.svg?style=flat-square)](https://travis-ci.org/BlackfyreStudio/crud) [![Packagist](https://img.shields.io/packagist/dt/blackfyrestudio/crud.svg?style=flat-square)](https://packagist.org/packages/blackfyrestudio/crud)
