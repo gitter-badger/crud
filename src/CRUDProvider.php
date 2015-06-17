@@ -9,9 +9,13 @@
 namespace BlackfyreStudio\CRUD;
 
 use BlackfyreStudio\CRUD\Console\ScaffoldCommand;
+use GrahamCampbell\Markdown\Facades\Markdown;
+use GrahamCampbell\Markdown\MarkdownServiceProvider;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
+use Intervention\Image\ImageServiceProvider;
 
 class CRUDProvider extends ServiceProvider {
     /**
@@ -105,14 +109,14 @@ class CRUDProvider extends ServiceProvider {
         /*
          * Registering dependencies, so the user won't have to
          */
-        $this->app->register('Intervention\Image\ImageServiceProvider');
-        $this->app->register('GrahamCampbell\Markdown\MarkdownServiceProvider');
+        $this->app->register(ImageServiceProvider::class);
+        $this->app->register(MarkdownServiceProvider::class);
 
         /*
          * Adding aliases so the user won't have to
          */
         $loader = AliasLoader::getInstance();
-        $loader->alias('InterventionImage','Intervention\Image\Facades\Image');
-        $loader->alias('Markdown','GrahamCampbell\Markdown\Facades\Markdown');
+        $loader->alias('InterventionImage', Image::class);
+        $loader->alias('Markdown', Markdown::class);
     }
 }
